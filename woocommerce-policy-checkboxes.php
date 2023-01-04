@@ -25,7 +25,7 @@ function policy_checkboxes_settings_page() {
     ?>
     
       <div class="wrap">
-        <h1>Policy Checkboxes Settings</h1>
+        <h1>Wordpress Policy Checkboxes Settings</h1>
         <form method="post" action="options.php">
           <?php settings_fields( 'policy-checkboxes-settings-group' ); ?>
           <?php do_settings_sections( 'policy-checkboxes-settings-group' ); ?>

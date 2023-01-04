@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Policy Checkboxes
 Plugin URI: https://github.com/Louisreed/woocommerce-policy-checkboxes
 Description: This plugin adds a compulsory checkbox to the checkout page in WooCommerce that must be checked in order for the customer to place their order.
-Version: 1.4.1
+Version: 1.4.2
 Author: Louis Reed
 Author URI: https://louisreed.co.uk
 */

@@ -3,8 +3,7 @@
 Plugin Name: Policy Checkboxes
 Plugin URI: https://github.com/Louisreed/woocommerce-policy-checkboxes
 Description: This plugin adds a compulsory checkbox to the checkout page in WooCommerce that must be checked in order for the customer to place their order.
-Description: The checkbox reads "You must accept the privacy policy" and has a link to the privacy-policy page (#privacypolicy).
-Version: 1.3
+Version: 1.4
 Author: Louis Reed
 Author URI: https://louisreed.co.uk
 */
@@ -87,4 +86,16 @@ function refunds_and_returns_checkbox_validation() {
   if ( ! (int) isset( $_POST['refunds_and_returns'] ) ) {
   wc_add_notice( __( 'Please read and accept the refunds and returns policy' ), 'error' );
   }
+}
+
+// Add Settings link
+
+add_filter( 'plugin_action_links', 'policy_checkboxes_settings_link', 10, 2 );
+
+function policy_checkboxes_settings_link( $links, $file ) {
+    if ( strpos( $file, 'policy-checkboxes.php' ) !== false ) {
+        $settings_link = '<a href="' . admin_url( 'admin.php?page=policy-checkboxes' ) . '">' . __( 'Settings', 'policy-checkboxes' ) . '</a>';
+        array_unshift( $links, $settings_link );
+    }
+    return $links;
 }

@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Policy Checkboxes
 Plugin URI: https://github.com/Louisreed/woocommerce-policy-checkboxes
 Description: This plugin adds a compulsory checkbox to the checkout page in WooCommerce that must be checked in order for the customer to place their order.
-Version: 1.4.4
+Version: 1.4.3
 Author: Louis Reed
 Author URI: https://louisreed.co.uk
 */
@@ -49,29 +49,29 @@ function policy_checkboxes_settings_page() {
 // Update checkbox labels with new policy URLs
 add_action( 'woocommerce_review_order_before_submit', 'privacy_policy_checkbox' );
 function privacy_policy_checkbox() {
-  $privacy_policy_url = get_option( 'privacy_policy_url' );
+  $policy_url = get_option( 'privacy-policy-url' );
   woocommerce_form_field( 'privacy_policy', array(
-    'type'          => 'checkbox',
-    'class'         => array('privacy-policy form-row-wide'),
-    'label_class'   => array('woocommerce-form__label woocommerce-form__label-for-checkbox checkbox'),
-    'input_class'   => array('woocommerce-form__input woocommerce-form__input-checkbox input-checkbox'),
-    'required'      => true,
-    'label'         => 'I have read and understand the <a href="' . esc_url( $privacy_policy_url ) . '" target="_blank" class="policy-link">privacy policy</a>',
+  'type' => 'checkbox',
+  'class' => array('privacy-policy form-row-wide'),
+  'label_class' => array('woocommerce-form__label woocommerce-form__label-for-checkbox checkbox'),
+  'input_class' => array('woocommerce-form__input woocommerce-form__input-checkbox input-checkbox'),
+  'required' => true,
+  'label' => 'I have read and understand the <a href="' . $policy_url . '" target="_blank" >privacy policy</a>',
   ));
 }
 
 add_action( 'woocommerce_review_order_before_submit', 'refunds_and_returns_checkbox' );
 function refunds_and_returns_checkbox() {
-  $refunds_and_returns_url = get_option( 'refunds_and_returns_url' );
+  $policy_url = get_option( 'refunds-and-returns-url' );
   woocommerce_form_field( 'refunds_and_returns', array(
-    'type'          => 'checkbox',
-    'class'         => array('refunds-and-returns form-row-wide'),
-    'label_class'   => array('woocommerce-form__label woocommerce-form__label-for-checkbox checkbox'),
-    'input_class'   => array('woocommerce-form__input woocommerce-form__input-checkbox input-checkbox'),
-    'required'      => true,
-    'label'         => 'I have read and understand the <a href="' . esc_url( $refunds_and_returns_url ) . '" target="_blank" class="policy-link">refunds and returns policy</a>',
+  'type' => 'checkbox',
+  'class' => array('refunds-and-returns form-row-wide'),
+  'label_class' => array('woocommerce-form__label woocommerce-form__label-for-checkbox checkbox'),
+  'input_class' => array('woocommerce-form__input woocommerce-form__input-checkbox input-checkbox'),
+  'required' => true,
+  'label' => 'I have read and understand the <a href="' . $policy_url . '" target="_blank">refunds and returns policy</a>',
   ));
-
+}
 
 // Validation
 add_action( 'woocommerce_checkout_process', 'privacy_policy_checkbox_validation' );
@@ -99,18 +99,3 @@ function policy_checkboxes_settings_link( $links, $file ) {
     }
     return $links;
 }
-
-<script>
-  // Set the checkboxes to be disabled by default
-  document.querySelectorAll('.policy-checkbox').forEach(function(checkbox) {
-    checkbox.setAttribute('disabled', true);
-  });
-
-  // Add an event listener to the policy links
-  document.querySelectorAll('.policy-link').forEach(function(link) {
-    link.addEventListener('click', function(event) {
-      // Enable the checkbox when the policy link is clicked
-      event.target.parentElement.querySelector('.policy-checkbox').removeAttribute('disabled');
-    });
-  });
-</script>

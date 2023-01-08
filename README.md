@@ -22,7 +22,7 @@ This plugin adds a compulsory checkbox to the checkout page in WooCommerce that 
 
 You can customize the text of the policy checkboxes by modifying the label parameter in the woocommerce_form_field function. For example:
 
-`
+```
 woocommerce_form_field( 'privacy_policy', array(
   'type'          => 'checkbox',
   'class'         => array('privacy-policy form-row-wide'),
@@ -31,7 +31,7 @@ woocommerce_form_field( 'privacy_policy', array(
   'required'      => true,
   'label'         => 'I have read and accept the <a href="' . esc_url( $privacy_policy_url ) . '" target="_blank" class="policy-link">terms and conditions</a>',
 ));
-`
+```
 
 **How do I customize the look and feel of the policy checkboxes?**
 
@@ -41,20 +41,20 @@ You can customize the look and feel of the policy checkboxes by modifying the cl
 
 You can redirect the customer to the policy pages if they don't check the policy checkboxes by adding the following code to your theme's functions.php file:
 
-`
+```
 add_action( 'woocommerce_checkout_process', 'policy_checkbox_validation' );
 function policy_checkbox_validation() {
   if ( ! isset( $_POST['privacy_policy'] ) || ! isset( $_POST['refunds_and_returns'] ) ) {
     wc_add_notice( __( 'Please read and accept the policy checkboxes to proceed with your order.' ), 'error' );
   }
 }
-`
+```
 
 **How do I disable the policy checkboxes for certain products?**
 
 You can disable the policy checkboxes for certain products by adding the following code to your theme's functions.php file:
 
-`
+```
 add_filter( 'woocommerce_product_supports', 'disable_policy_checkboxes_for_product', 10, 3 );
 function disable_policy_checkboxes_for_product( $supports, $feature, $product ) {
   if ( 'policy-checkboxes' === $feature ) {
@@ -62,7 +62,7 @@ function disable_policy_checkboxes_for_product( $supports, $feature, $product ) 
   }
   return $supports;
 }
-`
+```
 
 Then, you can disable the policy checkboxes for a specific product by checking the "Disable Policy Checkboxes" checkbox in the product's "Advanced" tab.
 

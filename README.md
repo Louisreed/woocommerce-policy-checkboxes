@@ -33,9 +33,11 @@ woocommerce_form_field( 'privacy_policy', array(
 ));
 ```
 
+
 **How do I customize the look and feel of the policy checkboxes?**
 
 You can customize the look and feel of the policy checkboxes by modifying the class and label_class parameters in the woocommerce_form_field function. You can also use custom CSS to style the checkboxes.
+
 
 **How do I redirect the customer to the policy pages if they don't check the policy checkboxes?**
 
@@ -49,6 +51,7 @@ function policy_checkbox_validation() {
   }
 }
 ```
+
 
 **How do I disable the policy checkboxes for certain products?**
 
